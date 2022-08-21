@@ -1,0 +1,153 @@
+﻿@model MVCEventCalendar.Models.Volunteer
+
+
+<script>
+    
+    function sponsor() {
+        document.getElementById("staff").style.display = "none";
+        document.getElementById("community").style.display = "none";
+        document.getElementById("sponsor").style.display = "block";
+    }
+    function staff() {
+        document.getElementById("staff").style.display = "block";
+        document.getElementById("community").style.display = "none";
+        document.getElementById("sponsor").style.display = "none";
+    }
+    function community() {
+        document.getElementById("staff").style.display = "none";
+        document.getElementById("community").style.display = "block";
+        document.getElementById("sponsor").style.display = "none";
+    }
+</script>
+<h2 style="text-align:center" >Create Volunteer</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+                <input type="text" name="_Name" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="_Surname" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="number" name="_Age" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="_Phone" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="type">Volunteer member type</label>
+        <div class="col-md-10">
+            <select id="type" class="form-control" name="type">
+                <option></option>
+                <option onclick="sponsor()" value="Sponsor">Sponsor</option>
+                <option onclick="staff()" value="Staff">Staff</option>
+                <option onclick="community()" value="Community">Community</option>
+            </select>
+        </div>
+    </div>
+    <div id="sponsor" style="display:none" class="form-group">
+        <h3>Sponsor</h3>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="ComponyName">Company Name</label>
+        <div class="col-md-10">
+            <input type="text" name="ComponyName" class="form-control" />
+        </div>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="ComponyName">Company Location</label>
+        <div class="col-md-10">
+            <input type="text" name="Location" class="form-control" />
+        </div>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="founded">Company founded date</label>
+        <div class="col-md-10">
+            <input type="datetime-local" name="founded" class="form-control" />
+        </div>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="founded">Company Amount Sponsored</label>
+        <div class="col-md-10">
+            <input type="number" name="amountSponsored" class="form-control" />
+        </div>
+    </div>
+
+    <div id="staff" style="display:none" class="form-group">
+        <h3>Staff Member</h3>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="department">Department Name</label>
+        <div class="col-md-10">
+            <input type="text" name="department" class="form-control" />
+        </div>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="job">Staff job</label>
+        <div class="col-md-10">
+            <input type="text" name="job" class="form-control" />
+        </div>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="servicehours">Staff Hours</label>
+        <div class="col-md-10">
+            <input type="number" name="servicehours" class="form-control" />
+        </div>
+    </div>
+
+    <div id="community" style="display:none" class="form-group">
+        <h3>Community Member</h3>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="department">Community Name</label>
+        <div class="col-md-10">
+            <input type="text" name="communityName" class="form-control" />
+        </div>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="job">Contribution</label>
+        <div class="col-md-10">
+            <input type="text" name="Contribution" class="form-control" />
+        </div>
+        <br />
+        <br />
+        <label class="control-label col-md-2" for="servicehours">Staff Hours</label>
+        <div class="col-md-10">
+            <input type="number" name="servicehours" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

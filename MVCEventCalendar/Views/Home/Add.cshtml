@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MVCEventCalendar.Models.Event>
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<body>
+
+    @using (Html.BeginForm("Adds","Home",FormMethod.Post))
+    {
+        <div class="form-horizontal">
+            <br />
+            <br />
+            <h1>@ViewBag.user</h1>
+            <br />
+            <br />
+            <div class="form-group">
+                <label class="control-label col-md-2" for="type">Volunteer member type</label>
+                <div class="col-md-10">
+                    <select id="type" class="form-control" name="joined">
+                        <option></option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.EventID">@item.Subject</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success btn-primary" type="submit">Join event</button>
+            </div>
+
+        </div>    
+
+
+    }
+
+</body>
+
